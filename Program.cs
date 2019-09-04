@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using AlgorithmsCSharp.FindTwins;
 
 namespace AlgorithmsCSharp
 {
@@ -10,6 +9,8 @@ namespace AlgorithmsCSharp
     {
         static void Main(string[] args)
         {
+            var random = new Random();
+            Twins.FindTwinNumbers(random);
         }
     }
 }
