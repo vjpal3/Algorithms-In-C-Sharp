@@ -10,7 +10,7 @@ namespace AlgorithmsCSharp
         static void Main(string[] args)
         {
             var random = new Random();
-            Twins.FindTwinNumbers(random);
+            Twins.FindAllTwinNumbers(random);
         }
     }
 }
