@@ -9,12 +9,13 @@ namespace AlgorithmsCSharp.CalculateInterest
     class Account
     {
         private decimal currentBalance;
+        public TransactionData data { get; set; }
 
         public Account(decimal balance)
         {
             currentBalance = balance;
+            data = new TransactionData { Deposit = 10.0m, Withdrawal = 20m, DepositFreq = 2, WithdrawalFreq = 4 };
         }
-
 
         public decimal UpdateYearlyBalance(int years, float yearlyInterestRate)
         {
@@ -25,19 +26,30 @@ namespace AlgorithmsCSharp.CalculateInterest
             return currentBalance;
         }
 
-        public decimal UpdateMonthlyBalance(int years, float monthlyInterestRate, decimal deposit, int dFrequency, decimal withdrawal, int wFrequency )
+        public decimal UpdateMonthlyBalance(int years, float monthlyInterestRate)
         {
             for (var i = 0; i < years * 12; i++)
             {
-                if (i % wFrequency == 0)
-                    currentBalance -= withdrawal;
+                RecurringWithdrawal(i);
 
-                currentBalance += currentBalance * (decimal) monthlyInterestRate / 100;
+                currentBalance += currentBalance * (decimal)monthlyInterestRate / 100;
 
-                if (i % dFrequency == 0)
-                    currentBalance += deposit;               
+                RecurringDeposit(i);
             }
+            currentBalance = Decimal.Round(currentBalance, 2);          
             return currentBalance;
+        }
+
+        private void RecurringWithdrawal(int month)
+        {
+            if (month % (data.WithdrawalFreq-1) == 0)
+                currentBalance -= data.Withdrawal;
+        }
+
+        private void RecurringDeposit(int month)
+        {
+            if (month % (data.DepositFreq-1) == 0)
+                currentBalance += data.Deposit;
         }
 
         public string ShowBalance()
