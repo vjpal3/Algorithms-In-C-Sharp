@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using AlgorithmsCSharp.FindTwins;
+using AlgorithmsCSharp.CalculateInterest;
+
 
 namespace AlgorithmsCSharp
 {
@@ -9,8 +8,15 @@ namespace AlgorithmsCSharp
     {
         static void Main(string[] args)
         {
-            var random = new Random();
-            Twins.FindAllTwinNumbers(random);
+            var account = new Account(100);
+            //account.UpdateYearlyBalance(5, 1.47f);
+            account.UpdateMonthlyBalance(1, 10f, 20, 2, 10, 4);
+
+            Console.WriteLine("Current Balance: " + account.ShowBalance()); 
+            
+            //Run FindTwins code 
+            //var random = new Random();
+            //Twins.FindAllTwinNumbers(random);
         }
     }
 }
