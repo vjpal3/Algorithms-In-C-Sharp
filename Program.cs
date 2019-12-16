@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AlgorithmsCSharp.CalculateInterest;
 
 
@@ -9,7 +10,7 @@ namespace AlgorithmsCSharp
         static void Main(string[] args)
         {
             //Largest Difference
-            Console.WriteLine("Max Difference: " + LargestDifference.FindLargestDifference1());
+            //Console.WriteLine("Max Difference: " + LargestDifference.FindLargestDifference1());
 
             // Run CalculateInterest Code
             //var account = new Account(1000);
@@ -19,6 +20,15 @@ namespace AlgorithmsCSharp
             //Run FindTwins code 
             //var random = new Random();
             //Twins.FindAllTwinNumbers(random);
+
+            //Run code for checking Anagrams
+            var strings = new List<string>() { "abcd", "acdb", "dabc" };
+            Console.WriteLine(Anagrams.AreAnagrams(strings));
+            var strings1 = new List<string>() { "debit carb", "bad credit" };
+            Console.WriteLine(Anagrams.AreAnagrams(strings1));
+
+            Console.WriteLine("Press Enetr to exit");
+            Console.ReadLine();
         }
     }
 }
