@@ -45,10 +45,15 @@ namespace AlgorithmsCSharp
 
             //Console.WriteLine(Capitalization.TitleCaseWords("how Beautiful is the Day!!"));
 
-            Console.WriteLine(CaesarCipher.GetCaesarCipher("I Love JavaScript!", -100)); 
+            //Console.WriteLine(CaesarCipher.GetCaesarCipher("I Love JavaScript!", -100)); 
 
+            string magazine = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
 
-            Console.WriteLine("Press Enetr to exit");
+            Console.WriteLine(RansomNote.CanCreate("sit dolore ad est dolore sint dolor", magazine) ? "Ransomenote can be created " : "Ransom note can't be created");
+
+            Console.WriteLine(RansomNote.CanCreate("sit ad est sint in in", magazine) ? "Ransomenote can be created " : "Ransom note can't be created");
+
+            Console.WriteLine("Press Enter to exit");
             Console.ReadLine();
 
         }
