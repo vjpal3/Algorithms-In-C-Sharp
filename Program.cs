@@ -31,20 +31,21 @@ namespace AlgorithmsCSharp
             //Console.WriteLine($"Vowel Count: { GetVowelCount("I am going to the beachside today, it's a beautiful day!")}");
 
             // Uppercase words in these strings.
-            const string str1 = "something in the way";
-            const string str2 = "dot net PERLS";
-            const string str3 = "String_two;three";
-            const string str4 = " sam";
-            const string str5 = " ";
+            //const string str1 = "something in the way";
+            //const string str2 = "dot net PERLS";
+            //const string str3 = "String_two;three";
+            //const string str4 = " sam";
+            //const string str5 = " ";
 
-            Console.WriteLine(Capitalization.CapitalizeWords(str1));
-            Console.WriteLine(Capitalization.CapitalizeWords(str2));
-            Console.WriteLine(Capitalization.CapitalizeWords(str3));
-            Console.WriteLine(Capitalization.CapitalizeWords(str4));
-            Console.WriteLine(Capitalization.CapitalizeWords(str5));
+            //Console.WriteLine(Capitalization.CapitalizeWords(str1));
+            //Console.WriteLine(Capitalization.CapitalizeWords(str2));
+            //Console.WriteLine(Capitalization.CapitalizeWords(str3));
+            //Console.WriteLine(Capitalization.CapitalizeWords(str4));
+            //Console.WriteLine(Capitalization.CapitalizeWords(str5));
 
-            Console.WriteLine(Capitalization.TitleCaseWords("how Beautiful is the Day!!"));
+            //Console.WriteLine(Capitalization.TitleCaseWords("how Beautiful is the Day!!"));
 
+            Console.WriteLine(CaesarCipher.GetCaesarCipher("I Love JavaScript!", -100)); 
 
 
             Console.WriteLine("Press Enetr to exit");
