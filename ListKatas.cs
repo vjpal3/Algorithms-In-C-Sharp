@@ -30,10 +30,7 @@ namespace AlgorithmsCSharp
                 {
                     output.Add(new Tuple<int, int>(num, needed));
                 }
-                else
-                {
-                    store.Add(num);
-                }
+                store.Add(num);
             }
 
             return output;
