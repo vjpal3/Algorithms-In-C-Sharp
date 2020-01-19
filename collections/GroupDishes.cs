@@ -1,28 +1,44 @@
+// You are given a list dishes, where each element consists of a list of strings 
+// beginning with the name of the dish, followed by all the ingredients used in 
+// preparing it. Return an array where each element is a list beginning with the 
+// ingredient name, followed by the names of all the dishes that contain this 
+// ingredient. The dishes inside each list should be sorted lexicographically, 
+// and the result array should be sorted lexicographically by the names of 
+// the ingredients.
+
+// dishes = [["Salad", "Tomato", "Cucumber", "Salad", "Sauce"],
+//             ["Pizza", "Tomato", "Sausage", "Sauce", "Dough"],
+//             ["Quesadilla", "Chicken", "Cheese", "Sauce"],
+//             ["Sandwich", "Salad", "Bread", "Tomato", "Cheese"]]
+
+// GroupingDishes(dishes) = [["Cheese", "Quesadilla", "Sandwich"],
+//                             ["Salad", "Salad", "Sandwich"],
+//                             ["Sauce", "Pizza", "Quesadilla", "Salad"],
+//                             ["Tomato", "Pizza", "Salad", "Sandwich"]]
+
 string[][] GroupingDishes(string[][] dishes) {
     
-    var igMap = new Dictionary<String, string>(); 
+    var igMap = new Dictionary<string, HashSet<string>>(); 
     
     foreach(var dish in dishes) {
-       for (var i = 1; i < dish.Length; i++) {
-           if(igMap.ContainsKey(dish[i])) {
-            igMap[dish[i]] += " " + dish[0];
-        }
-        else
-            igMap[dish[i]] = dish[0];
-       }       
-    }
-    
-    List<List<string>> result = new List<List<string>>();
-    
-    foreach(var kvp in igMap) {
+        var dishName = dish.First();
         
-        if (kvp.Value.Contains(" ")) {
-            List<string> inner = new List<string>();
-            result.Add(inner);
-            inner.Add(kvp.Key);
-            inner.AddRange(kvp.Value.Split(" "));
-            Console.WriteLine(string.Join(",", inner.ToArray()));
-        }
+        foreach (var ingredient in dish.Skip(1)) {
+           if(!igMap.ContainsKey(ingredient)) 
+                igMap[ingredient] = new HashSet<string>();
+        
+           igMap[ingredient].Add(dishName);
+        }    
     }
-    return result.Select(a => a.ToArray()).ToArray();
-}
+    
+    var ingredients = igMap
+        .Where(kvp => kvp.Value.Count > 1)
+        .OrderBy(kvp => kvp.Key, StringComparer.Ordinal)
+        .Select(kvp => {
+            List<string> inner = new List<string>() { kvp.Key };
+            inner.AddRange(kvp.Value.OrderBy(x => x, StringComparer.Ordinal));
+            return inner.ToArray();
+                
+        }).ToArray();
+    
+    return ingredients;
