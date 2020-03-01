@@ -11,20 +11,17 @@ namespace AlgorithmsCSharp
         public static bool CanCreate(string note, string magazine)
         {
             Dictionary<string, int> magzineData = GetDictionaryData(magazine);
-            Dictionary<string, int> noteData = GetDictionaryData(note);
+            var counter = 0;
 
-            foreach (var pair in noteData)
+            foreach (var word in note.Split(' '))
             {
-                if (magzineData.TryGetValue(pair.Key, out int count))
+                if(magzineData.TryGetValue(word, out int count))
                 {
-                    if (count < pair.Value)
-                        return false;
+                    magzineData[word]--;
+                    counter++;
                 }
-                else
-                    return false;
-
             }
-            return true;
+            return counter >= note.Split(' ').Length ? true : false;
         }
 
         private static Dictionary<string, int> GetDictionaryData(string magazine)
