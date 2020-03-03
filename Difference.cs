@@ -8,26 +8,73 @@ namespace AlgorithmsCSharp
 {
     public class Difference
     {
-        public static int FindDiffLargestEvenSmallestOdd(int[] numbers)
+        public static int? FindDiffLargestEvenSmallestOdd(int?[] numbers)
         {
-            int largestEvenNumber = int.MinValue;
-            int smallestOddNumber = int.MaxValue;
+            //int largestEvenNumber = int.MinValue;
+            //int smallestOddNumber = int.MaxValue;
 
-            for(var i = 0; i < numbers.Length; i++)
+            //for(var i = 0; i < numbers.Length; i++)
+            //{
+            //    if(numbers[i] % 2 == 0)
+            //    {
+            //        if (numbers[i] > largestEvenNumber)
+            //            largestEvenNumber = numbers[i];
+            //    }
+            //    else if(numbers[i] % 2 == 1)
+            //    {
+            //        if (numbers[i] < smallestOddNumber)
+            //            smallestOddNumber = numbers[i];
+            //    }
+            //}
+
+            //return largestEvenNumber - smallestOddNumber;
+
+            int? largestEvenNumber = null;
+            int? smallestOddNumber = null;
+
+            foreach (var num in numbers)
             {
-                if(numbers[i] % 2 == 0)
+                if (num % 2 == 0)
                 {
-                    if (numbers[i] > largestEvenNumber)
-                        largestEvenNumber = numbers[i];
+                    if (!largestEvenNumber.HasValue || num > largestEvenNumber)
+                    {
+                        largestEvenNumber = num;
+                    }
                 }
-                else if(numbers[i] % 2 == 1)
+                else if (num % 2 != 0)
                 {
-                    if (numbers[i] < smallestOddNumber)
-                        smallestOddNumber = numbers[i];
+                    if (!smallestOddNumber.HasValue || num < smallestOddNumber)
+                    {
+                        smallestOddNumber = num;
+                    }
                 }
             }
 
-            return largestEvenNumber - smallestOddNumber;
+            if(largestEvenNumber == null)
+            {
+                throw new ArgumentNullException("Array does not contain any even number");
+            }
+            else
+            {
+                Console.WriteLine($"Largest Even number: {largestEvenNumber}");
+            }
+
+            if (smallestOddNumber == null)
+            {
+                throw new ArgumentNullException("Array does not contain any odd number");
+            }
+            else
+            {
+                Console.WriteLine($"Smallest Odd number: {smallestOddNumber}");
+            }
+
+            if (largestEvenNumber != null && smallestOddNumber != null)
+            {
+                Console.Write("Difference: ");
+                return largestEvenNumber - smallestOddNumber;
+            }
+
+            return null;
         }
     }
 }
